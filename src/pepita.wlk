@@ -19,84 +19,135 @@ class telcado{
 	 	}
 	 
 	 	keyboard.a().OnPressDo{
+	 		if (juego.juegoInciado()){	
 	 		unaLetra.hay_enPalabra("a")
-	 	}
+	 	}}
 	 	
 	 	keyboard.b().OnPressDo{
+	 		if (juego.juegoInciado()){
 	 		unaLetra.hay_enPalabra("b")
-	 	}
+	 	}}
+	 	
 	 	keyboard.c().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("c")
-	 	}
+	 		if (juego.juegoInciado()){
+	 				(unaLetra.hay_enPalabra("c")
+	 	}}
+	 	
 	 	keyboard.d().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("d")
+	 		if (juego.juegoInciado()){
+	 			(unaLetra.hay_enPalabra("d")
 	 	}
+	 	
 	 	keyboard.e().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("e")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("e")
+	 	}}
+	 	
+	 	
 	 	keyboard.f().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("f")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("f")
+	 	}}
+	 	
 	 	keyboard.g().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("g")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("g")
+	 	}}
+	 	
 	 	keyboard.h().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("h")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("h")
+	 	}}
+	 	
 	 	keyboard.i().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("i")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("i")
+	 	}}
+	 	
 	 	keyboard.j().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("j")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("j")
+	 	}}
+	 	
 	 	keyboard.k().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("k")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("k")
+	 	}}
+	 	
 	 	keyboard.l().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("l")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("l")
+	 	}}
+	 	
 	 	keyboard.m().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("m")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("m")
+	 	}}
+	 	
 	 	keyboard.n().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("n")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("n")
+	 	}}
+	 	
 	 	keyboard.o().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("o")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("o")
+	 	}}
+	 	
 	 	keyboard.p().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("p")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("p")
+	 	}}
+	 	
 	 	keyboard.q().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("q")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("q")
+	 	}}
+	 	
 	 	keyboard.r().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("r")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("r")
+	 	}}
+	 	
 	 	keyboard.s().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("s")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("s")
+	 	}}
+	 	
 	 	keyboard.t().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("t")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("t")
+	 	}}
+	 	
 	 	keyboard.u().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("u")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("u")
+	 	}}
+	 	
 	 	keyboard.v().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("v")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("v")
+	 	}}
+	 	
 	 	keyboard.w().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("w")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("w")
+	 	}}
+	 	
 	 	keyboard.x().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("x")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("x")
+	 	}}
+	 	
 	 	keyboard.y().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("y")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("y")
+	 	}}
+	 	
 	 	keyboard.z().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("z")
-	 	}
+	 		if (juego.juegoInciado()){
+	 		unaLetra.hay_enPalabra("z")
+	 	}}
 }
 }}*/
 
