@@ -19,83 +19,83 @@ class telcado{
 	 	}
 	 
 	 	keyboard.a().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("a")) unaLetra.colocarLetra()
+	 		unaLetra.hay_enPalabra("a")
 	 	}
 	 	
 	 	keyboard.b().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("b")) unaLetra.colocarLetra()
+	 		unaLetra.hay_enPalabra("b")
 	 	}
 	 	keyboard.c().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("c")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("c")
 	 	}
 	 	keyboard.d().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("d")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("d")
 	 	}
 	 	keyboard.e().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("e")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("e")
 	 	}
 	 	keyboard.f().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("f")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("f")
 	 	}
 	 	keyboard.g().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("g")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("g")
 	 	}
 	 	keyboard.h().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("h")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("h")
 	 	}
 	 	keyboard.i().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("i")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("i")
 	 	}
 	 	keyboard.j().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("j")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("j")
 	 	}
 	 	keyboard.k().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("k")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("k")
 	 	}
 	 	keyboard.l().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("l")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("l")
 	 	}
 	 	keyboard.m().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("m")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("m")
 	 	}
 	 	keyboard.n().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("n")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("n")
 	 	}
 	 	keyboard.o().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("o")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("o")
 	 	}
 	 	keyboard.p().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("p")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("p")
 	 	}
 	 	keyboard.q().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("q")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("q")
 	 	}
 	 	keyboard.r().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("r")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("r")
 	 	}
 	 	keyboard.s().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("s")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("s")
 	 	}
 	 	keyboard.t().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("t")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("t")
 	 	}
 	 	keyboard.u().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("u")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("u")
 	 	}
 	 	keyboard.v().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("v")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("v")
 	 	}
 	 	keyboard.w().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("w")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("w")
 	 	}
 	 	keyboard.x().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("x")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("x")
 	 	}
 	 	keyboard.y().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("y")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("y")
 	 	}
 	 	keyboard.z().OnPressDo{
-	 		if (unaLetra.hay_enPalabra("z")) unaLetra.colocarLetra()
+	 		if (unaLetra.hay_enPalabra("z")
 	 	}
 }
 }}*/
