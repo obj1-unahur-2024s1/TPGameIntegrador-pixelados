@@ -8,12 +8,9 @@ object juego{
         game.boardGround("pizarra.jpg")
         game.title("Ahorcado")
         game.start()
-<<<<<<< HEAD
-    }    
-=======
     }    
 }
-
+/*
 keyboard.a().OnPressDo({
   if (unaPalabra.contains("a")){
     letra.colocarLetra("a")
@@ -21,7 +18,7 @@ keyboard.a().OnPressDo({
     letra.letraErronea("a")
   }
 )}
-
+*/
 
 class Letra {
   method colocarLetra(letra, palabra){
@@ -33,4 +30,3 @@ class Letra {
       else game.at(7,5)
   }
 }
->>>>>>> 2e7d8bbfa36346ccc6c3388171104c19bbe693cf
