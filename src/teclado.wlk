@@ -133,6 +133,7 @@ object teclado{
 				juego.hay_EnPalabra("z")
 			}
 		}
+		
 		keyboard.enter().onPressDo{
 			
 			juego.iniciarNivel1()

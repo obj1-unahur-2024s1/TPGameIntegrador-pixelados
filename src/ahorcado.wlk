@@ -16,7 +16,6 @@ const palabraNivel3 = new Palabra(dificultad=3)
 const unaLetra = new Letra(position=game.at(3,1),img="")
 
 const horca = new Fondo(img="horca/horca.png",position=game.at(0,4))
-//const ahorcado = new Ahorcado(img="",position=game.at(0,4))
 const guiones1 = new Elemento(img="letras/3guiones.png",position=game.at(3,0))
 const guiones2 = new Elemento(img="letras/4guiones.png",position=game.at(3,0))
 const guiones3 = new Elemento(img="letras/5guiones.png",position=game.at(3,0))
@@ -52,7 +51,6 @@ object juego{
     	palabraActiva = palabraNivel1.elegirPalabra()
     	game.addVisual(pizarraNivel1)
     	game.addVisual(horca)
-    	//game.addVisual(ahorcado)
     	game.addVisual(guiones1)
     	self.juegoIniciado(true)
     }
@@ -71,7 +69,6 @@ object juego{
     		palabraActiva = palabraNivel2.elegirPalabra()
     		game.removeVisual(pizarraNivel1)
     		game.removeVisual(horca)
-    		//game.removeVisual(ahorcado)
     		game.removeVisual(guiones1)
     		game.addVisual(screenNivel2)
     		vidas = 5
@@ -81,7 +78,6 @@ object juego{
     			game.removeVisual(screenNivel2)
     			game.addVisual(pizarraNivel2)
     			game.addVisual(horca)
-				//game.addVisual(ahorcado)
 				game.addVisual(guiones2)
 				self.juegoIniciado(true)
     		})
@@ -95,7 +91,6 @@ object juego{
     		palabraActiva = palabraNivel3.elegirPalabra()
     		game.removeVisual(pizarraNivel2)
     		game.removeVisual(horca)
-    		//game.removeVisual(ahorcado)
     		game.removeVisual(guiones2)
     		game.addVisual(screenNivel3)
     		vidas = 5
@@ -105,7 +100,6 @@ object juego{
     			game.removeVisual(screenNivel3)
     			game.addVisual(pizarraNivel3)
     			game.addVisual(horca)
-				//game.addVisual(ahorcado)
 				game.addVisual(guiones3)
 				self.juegoIniciado(true)
     		})
