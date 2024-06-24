@@ -1,39 +1,36 @@
 import wollok.game.*
 import teclado.*
 
-const screenNivel1 = new Fondo(img="fondos/nivel1.png")
-const screenNivel2 = new Fondo(img="fondos/nivel2.png")
-const screenNivel3 = new Fondo(img="fondos/nivel3.png")
-const pizarraNivel1 = new Fondo(img="fondos/pizarra1.png")
-const pizarraNivel2 = new Fondo(img="fondos/pizarra2.png")
-const pizarraNivel3 = new Fondo(img="fondos/pizarra3.png")
-const menu = new Menu(img="")
-
-const palabraNivel1 = new Palabra(dificultad=1)
-const palabraNivel2 = new Palabra(dificultad=2)
-const palabraNivel3 = new Palabra(dificultad=3)
-
-const unaLetra = new Letra(position=game.at(3,1),img="")
-
-const horca = new Fondo(img="horca/horca.png",position=game.at(0,4))
-const guiones1 = new Elemento(img="letras/3guiones.png",position=game.at(3,0))
-const guiones2 = new Elemento(img="letras/4guiones.png",position=game.at(3,0))
-const guiones3 = new Elemento(img="letras/5guiones.png",position=game.at(3,0))
-
-
 object juego{
-	var nivel = 1
-	var vidas = 5
-	var aciertos = 0
-	var errores = 0
+	var property nivel = 1
+	var property vidas = 6
+	var property aciertos = 0
+	var property errores = 0
 	var property juegoIniciado = false
-	var palabraActiva
+	var property palabraActiva
+		
+	const screenNivel1 = new Fondo(image="fondos/nivel1.png")
+	const screenNivel2 = new Fondo(image="fondos/nivel2.png")
+	const screenNivel3 = new Fondo(image="fondos/nivel3.png")
 	
-    method nivel() = nivel
-    method vidas() = vidas
-    method aciertos() = aciertos
-    method errores() = errores
-    method palabraActivda() = palabraActiva
+	const pizarraNivel1 = new Fondo(image="fondos/pizarra1.png")
+	const pizarraNivel2 = new Fondo(image="fondos/pizarra2.png")
+	const pizarraNivel3 = new Fondo(image="fondos/pizarra3.png")
+	
+	const menu = new Menu(image="")
+	
+	const palabraNivel1 = new Palabra(dificultad=1)
+	const palabraNivel2 = new Palabra(dificultad=2)
+	const palabraNivel3 = new Palabra(dificultad=3)
+	
+	const unaLetra = new Letra(position=game.at(3,1),image="")
+	
+	const horca = new Fondo(image="horca/horca.png",position=game.at(0,4))
+	
+	const guiones1 = new Elemento(image="letras/3guiones.png",position=game.at(3,0))
+	const guiones2 = new Elemento(image="letras/4guiones.png",position=game.at(3,0))
+	const guiones3 = new Elemento(image="letras/5guiones.png",position=game.at(3,0))
+		
     
      method iniciar(){
         game.width(15)
@@ -46,20 +43,24 @@ object juego{
         game.start()
     }   
     
-     method tablero(){
-    	game.removeVisual(screenNivel1)
-    	palabraActiva = palabraNivel1.elegirPalabra()
-    	game.addVisual(pizarraNivel1)
-    	game.addVisual(horca)
-    	game.addVisual(guiones1)
-    	self.juegoIniciado(true)
+    method reiniciar(){
+    	vidas = 6
+    	errores = 0
+    	aciertos = 0
     }
-    
+   
     method iniciarNivel1(){
     	game.removeVisual(menu)
     	game.removeTickEvent("menu")
-    	game.addVisual(screenNivel1)
-    	game.schedule(2000,{self.tablero()})
+    	game.addVisual(new Fondo(image="fondos/instrucciones.png"))
+    	game.schedule(3000,{
+    						palabraActiva = palabraNivel1.elegirPalabra()
+    						game.addVisual(screenNivel1)
+    						game.removeVisual(screenNivel1)
+					    	game.addVisual(pizarraNivel1)
+					    	game.addVisual(horca)
+					    	game.addVisual(guiones1)
+					    	self.juegoIniciado(true)})
     }
     
     method iniciarNivel2(){
@@ -71,9 +72,7 @@ object juego{
     		game.removeVisual(horca)
     		game.removeVisual(guiones1)
     		game.addVisual(screenNivel2)
-    		vidas = 5
-    		errores = 0
-    		aciertos = 0
+    		self.reiniciar()
     		game.schedule(2000,{
     			game.removeVisual(screenNivel2)
     			game.addVisual(pizarraNivel2)
@@ -93,9 +92,7 @@ object juego{
     		game.removeVisual(horca)
     		game.removeVisual(guiones2)
     		game.addVisual(screenNivel3)
-    		vidas = 5
-    		errores = 0
-    		aciertos = 0
+    		self.reiniciar()
     		game.schedule(2000,{
     			game.removeVisual(screenNivel3)
     			game.addVisual(pizarraNivel3)
@@ -118,77 +115,79 @@ object juego{
     		}
     	}else{
     		self.letraErronea(letra)
+    		game.addVisual(new Elemento(image="horca/vidas" + self.vidas() + ".png",position=game.at(0,4)))
+    		
     	}
     }
     
     method colocarLetra(letra){
     	const letraAcertada = 
-    		if (self.nivel()==1){
-    			new Letra(img="letras/"+letra+".png",
-    				position=
-    					if(palabraActiva.charAt(0)==letra) game.at(3,1)
-    					else if (palabraActiva.charAt(1)==letra) game.at(5,1)
-    					else game.at(7,1)
-    			)
-    		}else if (self.nivel()==2){
-    			new Letra(img="letras/"+letra+".png",
-    				position=
-    					if(palabraActiva.charAt(0)==letra) game.at(3,1)
-    					else if (palabraActiva.charAt(1)==letra) game.at(5,1)
-    					else if (palabraActiva.charAt(2)==letra) game.at(7,1)
-    					else game.at(9,1)
-    			)
-    		}else{
-    			new Letra(
-					img="letras/" + letra + ".png",
-					position =
-						if (palabraActiva.charAt(0)==letra) game.at(3,1)
-						else if (palabraActiva.charAt(1)==letra) game.at(5,1)
-						else if (palabraActiva.charAt(2)==letra) game.at(7,1)
-						else if (palabraActiva.charAt(3)==letra) game.at(9,1)
-						else game.at(11,1)
-				)
-    		}
+			    		if (self.nivel()==1){
+			    			new Letra(image="letras/"+letra+".png",
+			    				position=
+			    					if(palabraActiva.charAt(0)==letra) game.at(3,1)
+			    					else if (palabraActiva.charAt(1)==letra) game.at(5,1)
+			    					else game.at(7,1)
+			    			)
+			    		}else if (self.nivel()==2){
+			    			new Letra(image="letras/"+letra+".png",
+			    				position=
+			    					if(palabraActiva.charAt(0)==letra) game.at(3,1)
+			    					else if (palabraActiva.charAt(1)==letra) game.at(5,1)
+			    					else if (palabraActiva.charAt(2)==letra) game.at(7,1)
+			    					else game.at(9,1)
+			    			)
+			    		}else{
+			    			new Letra(
+								image="letras/" + letra + ".png",
+								position =
+									if (palabraActiva.charAt(0)==letra) game.at(3,1)
+									else if (palabraActiva.charAt(1)==letra) game.at(5,1)
+									else if (palabraActiva.charAt(2)==letra) game.at(7,1)
+									else if (palabraActiva.charAt(3)==letra) game.at(9,1)
+									else game.at(11,1)
+							)
+			    		}
     	game.addVisual(letraAcertada)
     }
     
     method letraErronea(letra){
     	if(vidas!=0){
     		vidas = vidas-1
-    		game.addVisual(new Letra(img="letras/"+letra+".png",position=unaLetra.posErroneas().get(errores)))
+    		game.addVisual(new Letra(image="letras/"+letra+".png",position=unaLetra.posErroneas().get(errores)))
     		errores +=1
     	}else{
-    		self.perdiste()
+    		game.addVisual(new Elemento(image="horca/vidas0.png",position=game.at(0,4)))
+    		game.schedule(500,{self.perdiste()})
     	}
     }
     
     method ganaste(){
     	game.clear()
-    	game.addVisual(new Fondo(img="fondos/pizarra1.png"))
+    	game.addVisual(new Fondo(image="fondos/ganaste.png"))
     }
     
     method perdiste(){
     	game.clear()
-    	game.addVisual(new Fondo(img="fondos/pizarra2.png"))
+    	game.addVisual(new Fondo(image="fondos/perdiste.png"))
+    	game.schedule(3000,{game.stop()})
     }
   
 }
 
 class Elemento{
 	var property position = game.origin()
-	var img
-	
-	method image()=img
+	var property image
+
 }
 
 class Fondo inherits Elemento{
-	
+	//clase abstracta para mejorar legibilidad
 }
-
-
+/* 
 class Ahorcado inherits Elemento{
 	override method image() = "horca/vidas" + juego.vidas() + ".png"
-}
+}*/
 
 class Menu inherits Fondo{
 	var foto = 1
@@ -202,9 +201,9 @@ class Menu inherits Fondo{
 
 class Palabra{
 	var property dificultad
-	const nivel1 = ["luz","mar"]
-	const nivel2 = ["sapo","pico"]
-	const nivel3 = ["monte","juego"]
+	const nivel1 = ["sol", "mar", "pan", "luz", "pie", "rey", "hoy", "paz", "ley"]
+	const nivel2 = ["amor","azul","luna","flor","vino","copa","gato","risa","sola","pelo","malo","mesa","nube","pato","rosa"]
+	const nivel3 = ["amigo","avion","bravo","calor","fresa","ganso","huevo","mango","noche","queso","tango"]
 	
 	method elegirPalabra() = 
 		if(dificultad==1) nivel1.anyOne()
@@ -214,8 +213,7 @@ class Palabra{
 
 class Letra{
 	var property position
-	var img
+	var property image
 	
 	const property posErroneas = [game.at(7,7),game.at(9,7),game.at(11,7),game.at(7,5),game.at(9,5),game.at(11,5)]
-	method image()=img
 }
