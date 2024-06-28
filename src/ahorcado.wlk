@@ -9,23 +9,11 @@ object juego{
 	var property juegoIniciado = false
 	var property palabraActiva
 		
-	const screenNivel1 = new Fondo(image="fondos/nivel1.png")
-	const screenNivel2 = new Fondo(image="fondos/nivel2.png")
-	const screenNivel3 = new Fondo(image="fondos/nivel3.png")
-	
 	const pizarraNivel1 = new Fondo(image="fondos/pizarra1.png")
 	const pizarraNivel2 = new Fondo(image="fondos/pizarra2.png")
 	const pizarraNivel3 = new Fondo(image="fondos/pizarra3.png")
 	
-	const menu = new Menu(image="")
-	
-	const palabraNivel1 = new Palabra(dificultad=1)
-	const palabraNivel2 = new Palabra(dificultad=2)
-	const palabraNivel3 = new Palabra(dificultad=3)
-	
-	const unaLetra = new Letra(position=game.at(3,1),image="")
-	
-	const horca = new Fondo(image="horca/horca.png",position=game.at(0,4))
+	const horca = new Elemento(image="horca/horca.png",position=game.at(0,4))
 	
 	const guiones1 = new Elemento(image="letras/3guiones.png",position=game.at(3,0))
 	const guiones2 = new Elemento(image="letras/4guiones.png",position=game.at(3,0))
@@ -50,6 +38,8 @@ object juego{
     }
    
     method iniciarNivel1(){
+    	const screenNivel1 = new Fondo(image="fondos/nivel1.png")
+    	const palabraNivel1 = new Palabra(dificultad=1)
     	game.removeVisual(menu)
     	game.removeTickEvent("menu")
     	game.addVisual(new Fondo(image="fondos/instrucciones.png"))
@@ -64,6 +54,8 @@ object juego{
     }
     
     method iniciarNivel2(){
+    	const screenNivel2 = new Fondo(image="fondos/nivel2.png")
+    	const palabraNivel2 = new Palabra(dificultad=2)
     	self.juegoIniciado(false)
     	nivel = 2
     	game.schedule(1000,{
@@ -84,6 +76,8 @@ object juego{
     }
     
     method iniciarNivel3(){
+    	const screenNivel3 = new Fondo(image="fondos/nivel3.png")
+    	const palabraNivel3 = new Palabra(dificultad=3)
     	self.juegoIniciado(false)
     	nivel = 3
     	game.schedule(1000,{
@@ -107,15 +101,19 @@ object juego{
     	if(palabraActiva.contains(letra)){
     		self.colocarLetra(letra)
     		aciertos += 1
-    		if(self.nivel()==1 and aciertos==3){self.iniciarNivel2()}
-    		else if (self.nivel()==2 and aciertos==4){self.iniciarNivel3()}
+    		if(self.nivel()==1 and aciertos==3){
+    			self.iniciarNivel2()
+    		}
+    		else if (self.nivel()==2 and aciertos==4){
+    			self.iniciarNivel3()
+    		}
     		else if(aciertos==5){
     			game.clear()
     			self.ganaste()
     		}
     	}else{
     		self.letraErronea(letra)
-    		game.addVisual(new Elemento(image="horca/vidas" + self.vidas() + ".png",position=game.at(0,4)))
+    		game.addVisual(new Elemento(image="horca/vidas" + self.vidas().toString() + ".png",position=game.at(0,4)))
     		
     	}
     }
@@ -148,17 +146,18 @@ object juego{
 									else game.at(11,1)
 							)
 			    		}
+			    		
     	game.addVisual(letraAcertada)
     }
     
     method letraErronea(letra){
-    	if(vidas!=0){
+    	const unaLetra = new Letra(position=game.at(3,1),image="")
+    	if(vidas==0){
+    		game.schedule(500,{self.perdiste()})
+    	}else{
     		vidas = vidas-1
     		game.addVisual(new Letra(image="letras/"+letra+".png",position=unaLetra.posErroneas().get(errores)))
     		errores +=1
-    	}else{
-    		game.addVisual(new Elemento(image="horca/vidas0.png",position=game.at(0,4)))
-    		game.schedule(500,{self.perdiste()})
     	}
     }
     
@@ -184,15 +183,13 @@ class Elemento{
 class Fondo inherits Elemento{
 	//clase abstracta para mejorar legibilidad
 }
-/* 
-class Ahorcado inherits Elemento{
-	override method image() = "horca/vidas" + juego.vidas() + ".png"
-}*/
 
-class Menu inherits Fondo{
+object menu{
 	var foto = 1
 	
-	override method image() = "fondos/menu"+ foto +".png"
+	method position()= game.origin()
+	
+	method image() = "fondos/menu"+ foto.toString() +".png"
 	
 	method animacion(){
 		game.onTick(300,"menu",{foto = if(foto<6) foto+1 else 1})
