@@ -20,6 +20,9 @@ object juego{
 	const guiones1 = new Elemento(image="letras/3guiones.png",position=game.at(3,0))
 	const guiones2 = new Elemento(image="letras/4guiones.png",position=game.at(3,0))
 	const guiones3 = new Elemento(image="letras/5guiones.png",position=game.at(3,0))
+
+
+	
 		
     
      method iniciar(){
@@ -30,6 +33,10 @@ object juego{
         game.addVisual(menu)
         menu.animacion()
         teclado.configuracion()
+        game.schedule(0, { sonidos.cancion1().play()} )
+        sonidos.cancionActiva(sonidos.cancion1())
+		sonidos.cancion1().shouldLoop(true)
+		sonidos.cancion1().volume(0.3)
         game.start()
     }   
     
@@ -45,10 +52,10 @@ object juego{
     	const palabraNivel1 = new Palabra(dificultad=1)
     	game.removeVisual(menu)
     	game.removeTickEvent("menu")
-    	game.addVisual(instrucciones)
+    	game.addVisual(screenNivel1)
     	game.schedule(3000,{
     						palabraActiva = palabraNivel1.elegirPalabra()
-    						game.addVisual(screenNivel1)
+//    						game.addVisual(screenNivel1)
     						game.removeVisual(screenNivel1)
 					    	game.addVisual(pizarraNivel1)
 					    	game.addVisual(letraInstrucciones)
@@ -58,6 +65,11 @@ object juego{
     }
     
     method iniciarNivel2(){
+    	sonidos.cancionActiva().stop()
+    	sonidos.cancionActiva(sonidos.cancion2())
+    	game.schedule(0, { sonidos.cancion2().play()} )
+		sonidos.cancion2().volume(0.1)
+		
     	const screenNivel2 = new Fondo(image="fondos/nivel2.png")
     	const palabraNivel2 = new Palabra(dificultad=2)
     	self.juegoIniciado(false)
@@ -82,6 +94,11 @@ object juego{
     }
     
     method iniciarNivel3(){
+    	sonidos.cancionActiva().stop()
+    	sonidos.cancionActiva(sonidos.cancion3())
+    	game.schedule(0, { sonidos.cancion3().play()} )
+    	sonidos.cancion3().volume(0.1)
+    	
     	const screenNivel3 = new Fondo(image="fondos/nivel3.png")
     	const palabraNivel3 = new Palabra(dificultad=3)
     	self.juegoIniciado(false)
@@ -134,6 +151,8 @@ object juego{
     	vidas -= 1
     	game.addVisual(new Elemento(image="horca/vidas" + self.vidas().toString() + ".png",position=game.at(0,4)))
     	game.addVisual(new Letra(image="letras/"+letra+".png",position=unaLetra.posErroneas().get(errores)))
+    	game.sound("sonidos/pifia.mp3").play()
+    	
     }
     
     method colocarLetra(letra){
@@ -144,7 +163,7 @@ object juego{
 			    					if(palabraActiva.charAt(0)==letra) game.at(3,1)
 			    					else if (palabraActiva.charAt(1)==letra) game.at(5,1)
 			    					else game.at(7,1)
-			    			)
+			    			)						    			
 			    		}else if (self.nivel()==2){
 			    			new Letra(image="letras/"+letra+".png",
 			    				position=
@@ -164,6 +183,9 @@ object juego{
 									else game.at(11,1)
 							)
 			    		}
+			    		game.sound("sonidos/tiza.mp3").play()
+			    		
+			    		
 			    		
     	game.addVisual(letraAcertada)
     }
@@ -171,15 +193,21 @@ object juego{
    
     
     method ganaste(){
+    	sonidos.cancionActiva().stop()
     	game.clear()
+    	game.schedule(0, { sonidos.sonidoVictoria().play()} )
+    	sonidos.sonidoVictoria().volume(0.7)
     	game.addVisual(new Fondo(image="fondos/ganaste.png"))
-    	game.schedule(3000,{game.stop()})
+    	game.schedule(10000,{game.stop()})
     }
     
     method perdiste(){
+    	sonidos.cancionActiva().stop()
     	game.clear()
+    	game.schedule(0, { sonidos.sonidoDerrota().play()} )
+    	sonidos.sonidoDerrota().volume(0.5)
     	game.addVisual(new Fondo(image="fondos/perdiste.png"))
-    	game.schedule(3000,{game.stop()})
+    	game.schedule(10000,{game.stop()})
     }
   
 }
@@ -204,6 +232,17 @@ object menu{
 	method animacion(){
 		game.onTick(300,"menu",{foto = if(foto<6) foto+1 else 1})
 	}
+}
+
+object sonidos {
+	var property cancionActiva 
+	const property cancion1 = game.sound("sonidos/nivel1.mp3")
+	const property cancion2 = game.sound("sonidos/nivel2.mp3")
+	const property cancion3 = game.sound("sonidos/nivel3.mp3")
+	const property sonidoDerrota = game.sound("sonidos/derrota.mp3")
+	const property sonidoVictoria = game.sound("sonidos/victoria.mp3")
+	const property sonidoTiza = game.sound("sonidos/tiza.mp3")
+
 }
 
 class Palabra{
