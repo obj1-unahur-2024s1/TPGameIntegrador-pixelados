@@ -10,8 +10,8 @@
 
 ## Capturas
 
-![Menu Principal](imagenes/menuprincipal.png)
-![Partida](imagenes/partida.png)
+![Menu Principal](assets/screenshots/menuprincipal.png)
+![Partida](assets/screenshots/partida.png)
 
 ## Reglas de Juego / Instrucciones
 
