@@ -113,9 +113,19 @@ object juego{
     		}
     	}else{
     		self.letraErronea(letra)
-    		game.addVisual(new Elemento(image="horca/vidas" + self.vidas().toString() + ".png",position=game.at(0,4)))
-    		
+    		if(vidas == 0){
+    			game.schedule(500,{self.perdiste()})
+    		}else{
+    			errores+=1
+    		}
     	}
+    }
+    
+     method letraErronea(letra){
+    	const unaLetra = new Letra(position=game.at(3,1),image="")
+    	vidas -= 1
+    	game.addVisual(new Elemento(image="horca/vidas" + self.vidas().toString() + ".png",position=game.at(0,4)))
+    	game.addVisual(new Letra(image="letras/"+letra+".png",position=unaLetra.posErroneas().get(errores)))
     }
     
     method colocarLetra(letra){
@@ -150,16 +160,7 @@ object juego{
     	game.addVisual(letraAcertada)
     }
     
-    method letraErronea(letra){
-    	const unaLetra = new Letra(position=game.at(3,1),image="")
-    	if(vidas==0){
-    		game.schedule(500,{self.perdiste()})
-    	}else{
-    		vidas = vidas-1
-    		game.addVisual(new Letra(image="letras/"+letra+".png",position=unaLetra.posErroneas().get(errores)))
-    		errores +=1
-    	}
-    }
+   
     
     method ganaste(){
     	game.clear()
