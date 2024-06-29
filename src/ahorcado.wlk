@@ -8,7 +8,9 @@ object juego{
 	var property errores = 0
 	var property juegoIniciado = false
 	var property palabraActiva
-		
+	const property letrasSeleccionadas = []
+	const property instrucciones = new Fondo(image="fondos/instrucciones.png")
+	
 	const pizarraNivel1 = new Fondo(image="fondos/pizarra1.png")
 	const pizarraNivel2 = new Fondo(image="fondos/pizarra2.png")
 	const pizarraNivel3 = new Fondo(image="fondos/pizarra3.png")
@@ -35,6 +37,7 @@ object juego{
     	vidas = 6
     	errores = 0
     	aciertos = 0
+    	letrasSeleccionadas.clear()
     }
    
     method iniciarNivel1(){
@@ -42,12 +45,13 @@ object juego{
     	const palabraNivel1 = new Palabra(dificultad=1)
     	game.removeVisual(menu)
     	game.removeTickEvent("menu")
-    	game.addVisual(new Fondo(image="fondos/instrucciones.png"))
+    	game.addVisual(instrucciones)
     	game.schedule(3000,{
     						palabraActiva = palabraNivel1.elegirPalabra()
     						game.addVisual(screenNivel1)
     						game.removeVisual(screenNivel1)
 					    	game.addVisual(pizarraNivel1)
+					    	game.addVisual(letraInstrucciones)
 					    	game.addVisual(horca)
 					    	game.addVisual(guiones1)
 					    	self.juegoIniciado(true)})
@@ -60,6 +64,7 @@ object juego{
     	nivel = 2
     	game.schedule(1000,{
     		palabraActiva = palabraNivel2.elegirPalabra()
+    		game.removeVisual(letraInstrucciones)
     		game.removeVisual(pizarraNivel1)
     		game.removeVisual(horca)
     		game.removeVisual(guiones1)
@@ -68,6 +73,7 @@ object juego{
     		game.schedule(2000,{
     			game.removeVisual(screenNivel2)
     			game.addVisual(pizarraNivel2)
+    			game.addVisual(letraInstrucciones)
     			game.addVisual(horca)
 				game.addVisual(guiones2)
 				self.juegoIniciado(true)
@@ -82,6 +88,7 @@ object juego{
     	nivel = 3
     	game.schedule(1000,{
     		palabraActiva = palabraNivel3.elegirPalabra()
+    		game.removeVisual(letraInstrucciones)
     		game.removeVisual(pizarraNivel2)
     		game.removeVisual(horca)
     		game.removeVisual(guiones2)
@@ -90,6 +97,7 @@ object juego{
     		game.schedule(2000,{
     			game.removeVisual(screenNivel3)
     			game.addVisual(pizarraNivel3)
+    			game.addVisual(letraInstrucciones)
     			game.addVisual(horca)
 				game.addVisual(guiones3)
 				self.juegoIniciado(true)
@@ -165,6 +173,7 @@ object juego{
     method ganaste(){
     	game.clear()
     	game.addVisual(new Fondo(image="fondos/ganaste.png"))
+    	game.schedule(3000,{game.stop()})
     }
     
     method perdiste(){
@@ -214,4 +223,9 @@ class Letra{
 	var property image
 	
 	const property posErroneas = [game.at(7,7),game.at(9,7),game.at(11,7),game.at(7,5),game.at(9,5),game.at(11,5)]
+}
+
+object letraInstrucciones{
+	const property position = game.at(game.width()-3,game.height()-2)
+	method image() = "fondos/letraInstrucciones.png"
 }
