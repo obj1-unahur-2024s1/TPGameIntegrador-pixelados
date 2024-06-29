@@ -20,7 +20,7 @@
 
 ## Reglas de Juego / Instrucciones
 
-## Cómo Jugar
+### Cómo Jugar
 
 El juego consta de 3 niveles de dificultad. La dificultad aumenta con cada nivel, a medida que las palabras son más largas.
 
@@ -56,3 +56,8 @@ El juego consta de 3 niveles de dificultad. La dificultad aumenta con cada nivel
 - Comision 2/UNAHUR
 - Version 3.0.0
 - Una vez terminado, no tenemos problemas en que el repositorio sea público.
+
+
+img{
+
+}
