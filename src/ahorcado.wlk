@@ -21,10 +21,6 @@ object juego{
 	const guiones2 = new Elemento(image="letras/4guiones.png",position=game.at(3,0))
 	const guiones3 = new Elemento(image="letras/5guiones.png",position=game.at(3,0))
 
-
-	
-		
-    
      method iniciar(){
         game.width(15)
         game.height(10)
@@ -46,6 +42,8 @@ object juego{
     	aciertos = 0
     	letrasSeleccionadas.clear()
     }
+    
+    method perderVida(){vidas-=1}
    
     method iniciarNivel1(){
     	const screenNivel1 = new Fondo(image="fondos/nivel1.png")
@@ -55,7 +53,6 @@ object juego{
     	game.addVisual(screenNivel1)
     	game.schedule(3000,{
     						palabraActiva = palabraNivel1.elegirPalabra()
-//    						game.addVisual(screenNivel1)
     						game.removeVisual(screenNivel1)
 					    	game.addVisual(pizarraNivel1)
 					    	game.addVisual(letraInstrucciones)
@@ -132,7 +129,7 @@ object juego{
     		else if (self.nivel()==2 and aciertos==4){
     			self.iniciarNivel3()
     		}
-    		else if(aciertos==5){
+    		else{
     			game.clear()
     			self.ganaste()
     		}
@@ -148,7 +145,7 @@ object juego{
     
      method letraErronea(letra){
     	const unaLetra = new Letra(position=game.at(3,1),image="")
-    	vidas -= 1
+    	self.perderVida()
     	game.addVisual(new Elemento(image="horca/vidas" + self.vidas().toString() + ".png",position=game.at(0,4)))
     	game.addVisual(new Letra(image="letras/"+letra+".png",position=unaLetra.posErroneas().get(errores)))
     	game.sound("sonidos/pifia.mp3").play()
@@ -183,10 +180,7 @@ object juego{
 									else game.at(11,1)
 							)
 			    		}
-			    		game.sound("sonidos/tiza.mp3").play()
-			    		
-			    		
-			    		
+		game.sound("sonidos/tiza.mp3").play()	    		
     	game.addVisual(letraAcertada)
     }
     
@@ -209,7 +203,6 @@ object juego{
     	game.addVisual(new Fondo(image="fondos/perdiste.png"))
     	game.schedule(10000,{game.stop()})
     }
-  
 }
 
 class Elemento{

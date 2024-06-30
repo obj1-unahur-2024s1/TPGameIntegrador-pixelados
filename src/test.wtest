@@ -1,6 +1,8 @@
+import ahorcado.*
 
-test "testX" {
+test "las vidas bajan" {
 
-	assert.that(true)
-
+	assert.equals(6,juego.vidas())
+	juego.perderVida()
+	assert.equals(5,juego.vidas())
 }
