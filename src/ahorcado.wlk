@@ -129,7 +129,7 @@ object juego{
     		else if (self.nivel()==2 and aciertos==4){
     			self.iniciarNivel3()
     		}
-    		else{
+    		else if (aciertos==5){
     			game.clear()
     			self.ganaste()
     		}
@@ -192,7 +192,7 @@ object juego{
     	game.schedule(0, { sonidos.sonidoVictoria().play()} )
     	sonidos.sonidoVictoria().volume(0.7)
     	game.addVisual(new Fondo(image="fondos/ganaste.png"))
-    	game.schedule(10000,{game.stop()})
+    	game.schedule(7000,{game.stop()})
     }
     
     method perdiste(){
@@ -201,7 +201,7 @@ object juego{
     	game.schedule(0, { sonidos.sonidoDerrota().play()} )
     	sonidos.sonidoDerrota().volume(0.5)
     	game.addVisual(new Fondo(image="fondos/perdiste.png"))
-    	game.schedule(10000,{game.stop()})
+    	game.schedule(7000,{game.stop()})
     }
 }
 
