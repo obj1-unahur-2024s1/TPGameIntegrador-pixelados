@@ -56,8 +56,3 @@ El juego consta de 3 niveles de dificultad. La dificultad aumenta con cada nivel
 - Comision 2/UNAHUR
 - Version 3.0.0
 - Una vez terminado, no tenemos problemas en que el repositorio sea público.
-
-
-img{
-
-}
