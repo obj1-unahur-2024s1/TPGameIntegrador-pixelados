@@ -162,7 +162,7 @@ object teclado{
 		
 		keyboard.enter().onPressDo{
 			
-			juego.iniciarNivel1()
+			nivel1.iniciarNivel()
 		}
 		
 		keyboard.space().onPressDo{
