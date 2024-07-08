@@ -7,14 +7,17 @@ object juego{
 	var property aciertos = 0
 	var property errores = 0
 	var property juegoIniciado = false
-	var property palabraActiva
+	var property palabraActiva = ""
 	const property letrasSeleccionadas = []
 	const property instrucciones = new Fondo(image="fondos/instrucciones.png")
 	const property horca = new Elemento(image="horca/horca.png",position=game.at(0,4))
 	var property cancionActiva 
 	const property posErroneas = [game.at(7,7),game.at(9,7),game.at(11,7),game.at(7,5),game.at(9,5),game.at(11,5)]
+	const niveles = [nivel1,nivel2,nivel3,pantallaFinal]
 	
-     method iniciar(){
+	method seAcertoPalabra() = palabraActiva.size()==aciertos 
+	
+    method iniciar(){
         game.width(15)
         game.height(10)
         game.cellSize(64)
@@ -37,34 +40,22 @@ object juego{
     }
     
     method perderVida(){vidas-=1}
-    
+
     method hay_EnPalabra(letra){
-    	if(palabraActiva.contains(letra)){
+    	if (palabraActiva.contains(letra) and errores!=6){
     		self.colocarLetra(letra)
     		aciertos += 1
-    		if(self.nivel()==1 and aciertos==3){
-    			nivel2.iniciarNivel()
-    		}
-    		else if (self.nivel()==2 and aciertos==4){
-    			nivel3.iniciarNivel()
-    		}
-    		else if (aciertos==5){
-    			pantallaFinal.ganaste(true)
-    			game.schedule(500,{
-    				game.addVisual(pantallaFinal)
-    				pantallaFinal.sonido()
-    			}) 
+    		if(self.seAcertoPalabra()){
+    			niveles.get(nivel).iniciarNivel()
     		}
     	}else{
+	    	errores +=1    			
     		self.letraErronea(letra)
-    		if(vidas == 0){
-    			pantallaFinal.ganaste(false)
+    		if(errores==6){
     			game.schedule(500,{
-    				game.addVisual(pantallaFinal)
-    				pantallaFinal.sonido()
+	    			pantallaFinal.ganaste(false)
+	    			pantallaFinal.iniciarNivel()    				
     			})
-    		}else{
-    			errores+=1
     		}
     	}
     }
@@ -72,7 +63,7 @@ object juego{
      method letraErronea(letra){
     	self.perderVida()
     	game.addVisual(new Elemento(image="horca/vidas" + self.vidas().toString() + ".png",position=game.at(0,4)))
-    	game.addVisual(new Letra(image="letras/"+letra+".png",position=self.posErroneas().get(errores)))
+    	game.addVisual(new Letra(image="letras/"+letra+".png",position=self.posErroneas().get(errores-1)))
     	game.sound("sonidos/pifia.mp3").play()
     }
     
@@ -85,7 +76,7 @@ object juego{
 }
 
 object pantallaFinal{
-	var property ganaste
+	var property ganaste = true
 	
 	method position() = game.origin()
 	method image() = if(ganaste) "fondos/ganaste.png" else "fondos/perdiste.png"
@@ -95,6 +86,11 @@ object pantallaFinal{
     	game.schedule(0, { juego.cancionActiva().play()} )
     	juego.cancionActiva().volume(0.7)
     	game.schedule(7000,{game.stop()})
+	}
+	method iniciarNivel(){
+		game.clear()
+	   	game.addVisual(new Fondo(image = self.image()))
+	    self.sonido()
 	}
 }
 
@@ -154,7 +150,7 @@ object nivel1{
  }
 
 object nivel3{
-	const palabras = ["poema","amigo","avion","bravo","calor","fresa","ganso","huevo","mango","noche","queso","tango","pecho","cazar","sopla","audio"]
+	const palabras = ["poema","amigo","avion","bravo","calor","fresa","ganso","huevo","mango","noche","queso","tango","pecho","sopla","audio"]
 	
 	method cancion() = game.sound("sonidos/nivel3.mp3")
 	
